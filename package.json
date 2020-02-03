@@ -1,0 +1,19 @@
+{
+  "name": "dw-logistik-nuxt",
+  "version": "1.0.0",
+  "description": "Aplikasi Ekspedisi Lumen Nuxt",
+  "author": "Anugrah Sandi",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.8.5",
+    "@nuxtjs/axios": "^5.9.4",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}
