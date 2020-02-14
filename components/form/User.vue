@@ -32,6 +32,7 @@
         <div class="form-group">
             <label for="">Password</label>
             <input type="password" class="form-control" :class="{'is-invalid': errors.password}" v-model="users.password">
+            <p v-if="$route.name == 'users-edit-id'">Leave blank if you don't change your password</p>
             <p class="text-danger" v-if="errors.password">{{ errors.password[0] }}</p>
         </div>
         <div class="form-group">
@@ -59,11 +60,27 @@
             <p class="text-danger" v-if="errors.status">{{ errors.status[0] }}</p>
         </div>
         <button class="btn btn-primary btn-sm" @click="submit">Save</button>
+        <nuxt-link :to="{name: 'users'}" class="btn btn-secondary btn-sm">Back</nuxt-link>
     </div>
 </template>
 <script>
 import {mapActions, mapState} from 'vuex' 
 export default {
+    created() {
+        if (this.$route.name == 'users-edit-id') {
+            this.users = {
+                name: this.user.name,
+                identity_id: this.user.identity_id,
+                gender: this.user.gender,
+                address: this.user.address,
+                email: this.user.email,
+                password: '',
+                phone_number: this.user.phone_number,
+                role: this.user.role,
+                status: this.user.status
+            }
+        }
+    },
     data() {
         return {
             users: {
@@ -81,13 +98,19 @@ export default {
     },
     computed: {
         ...mapState('user', {
+            user: state => state.data,
             errors: state => state.errors
         })
     },
     methods: {
-        ...mapActions('user', ['storeUsersData']),
+        ...mapActions('user', ['storeUsersData', 'updateUserData']),
         submit() {
-            this.storeUsersData(this.users).then(() => this.$router.push({name: 'users'}))
+            if (this.$route.name == 'users-edit-id') {
+                let data = Object.assign({id: this.$route.params.id}, this.users)
+                this.updateUserData(data).then((this.$router.push({name: 'users'})))
+            } else {
+                this.storeUsersData(this.users).then(() => this.$router.push({name: 'users'}))
+            }
         }
     }
 }
