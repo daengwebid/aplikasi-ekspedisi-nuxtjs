@@ -15,8 +15,14 @@
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
-            Interface
+            Master Data
         </div>
+        <li class="nav-item">
+            <nuxt-link class="nav-link" :to="{name: 'users'}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Manage Users</span>
+            </nuxt-link>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
