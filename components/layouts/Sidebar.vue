@@ -18,6 +18,12 @@
             Master Data
         </div>
         <li class="nav-item">
+            <nuxt-link class="nav-link" :to="{name: 'categories'}">
+                <i class="fas fa-fw fa-tag"></i>
+                <span>Manage Categories</span>
+            </nuxt-link>
+        </li>
+        <li class="nav-item">
             <nuxt-link class="nav-link" :to="{name: 'users'}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Manage Users</span>
